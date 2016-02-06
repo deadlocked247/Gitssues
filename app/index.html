@@ -92,7 +92,7 @@
 				<div class="card-title">
 					{{card.title}}
 				</div>
-				<div ng-bind-html="card.body | filterProfiles" class="card-desc">
+				<div ng-bind="card.body" class="card-desc">
 				</div>
 				<div class="card-num">
 					<span ng-show="card.state == 'open'" class="octicon octicon-issue-opened"></span>

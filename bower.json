@@ -10,7 +10,8 @@
     "angular-route": "^1.5.0",
     "angular-loading-bar": "^0.8.0",
     "karma-read-json": "^1.1.0",
-    "jquery" : ""
+    "jquery": "",
+    "angular-mocks": "^1.5.0"
   },
   "ignore": [
     "**/.*",
