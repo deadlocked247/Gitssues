@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html lang="en" ng-app="gitssues">
+	<head>
+		<meta charset="utf-8">
+		<title>Gitssues</title>
+		<base href="/issue">
+		<!-- Meta Tags -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="twitter:card" content="Gitssues" />
+		<meta name="twitter:site" content="@gitssues" />
+		<meta property="og:title" content="Gitssues" />
+		<meta property="og:description" content="Why use the boring old way of looking up issues in Github? Check out Gitssues now!" />
+
+
+		<!-- Load local CSS -->
+		<link rel="stylesheet" href="app/css/main.css">
+		<link rel="icon" type="image/x-icon" href="app/img/favicon.ico">
+		<link rel="stylesheet" href="app/css/spinner.css">
+		<link rel="stylesheet" href="app/css/tooltip.css">
+
+		<!-- Google fonts -->
+		<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css">
+
+		<!-- Load bower CSS -->
+		<link href="../bower_components/octicons/octicons/octicons.css" rel='stylesheet' type='text/css'></link>
+		<link rel="stylesheet" href="../bower_components/angular-loading-bar/build/loading-bar.css">
+
+		<!-- Load bower scripts -->
+		<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="../bower_components/angular/angular.min.js"></script>
+		<script src="../bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
+		<script src="../bower_components/angular-route/angular-route.min.js"></script>
+
+		<!-- Load local scripts -->
+		<script src="app/js/app.js"></script>
+		<script src="app/js/directives.js"></script>
+		<script src="app/js/services.js"></script>
+		<script src="app/js/controllers.js"></script>
+
+		<!-- Load issue component scripts -->
+		<script src="app/components/issue/issueController.js"></script>
+	</head>
+<body ng-controller="issueController">
+	<ng-include src="'app/shared/navbar.html'"></ng-include>
+	<a target="_self" href="/">
+		<div ng-bind="errorMessage" class="no-data-center">
+		</div>
+	<loader loading="loading"></loader> 
+	
+	<div ng-hide="loading || errorMessage" class="container" style="padding-bottom:40px">
+
+		<div class="issue-author">
+			<a ng-href="{{issueData.user.html_url}}">
+				<img ng-src="{{issueData.user.avatar_url}}">
+				<div class="name">@{{issueData.user.login}}</div>
+			</a>
+			<div class="date" ng-bind="issueData.created_at | date:'mediumDate'"></div>
+			<div class="title">
+				<div class="label {{issueData.state}}">
+					<span ng-show="issueData.state == 'open'" class="octicon octicon-issue-opened"></span>
+					<span ng-show="issueData.state == 'closed'" class="octicon octicon-issue-closed"></span>
+					<span ng-show="issueData.state == 'reopened'" class="octicon octicon-issue-reopened"></span>
+					{{issueData.state}}
+				</div>
+
+				{{issueData.title}}</div>
+		</div>
+		<div ng-bind="issueData.body" class="issue-body">
+		</div>
+		<div class="issue-labels">
+			<a data-tooltip="View all issues for {{label.name}}" ng-click="viewLabel(label.name)" class="card-label" style="background-color:#{{label.color}};color:#{{darkenColor(label.color)}}" ng-repeat="label in issueData.labels">
+			{{label.name}}
+			</a>
+		</div>
+
+		<div ng-hide="commentData.length == 0" class="issue-comments">
+			<div class="issue-comments-title">
+				COMMENTS
+			</div>
+			<div ng-repeat="comment in commentData" class="comment-author">
+				<div class="name-block">
+					<img ng-src="{{comment.user.avatar_url}}">
+					<div>
+						<div class="name">
+							@{{comment.user.login}}
+						</div>
+						<div ng-bind="comment.created_at | date: 'mediumDate'" class="date">
+						</div>
+					</div>
+				</div>
+				<div ng-bind="comment.body" class="body-block">
+				</div>
+			</div>
+		</div>
+		<div style="text-align:center;padding:20px 0px">
+			<div ng-click="goBack()" class="button">
+				View all issues
+			</div>
+		</div>
+	</div>
+</body>

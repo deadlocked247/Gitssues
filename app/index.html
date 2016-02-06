@@ -1,0 +1,189 @@
+<!DOCTYPE HTML>
+<html lang="en" ng-app="gitssues">
+	<head>
+		<base href="/">
+		<meta charset="utf-8">
+		<title>Gitssues</title>
+
+		<!-- Meta Tags -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="twitter:card" content="Gitssues" />
+		<meta name="twitter:site" content="@gitssues" />
+		<meta property="og:title" content="Gitssues" />
+		<meta property="og:description" content="Why use the boring old way of looking up issues in Github? Check out Gitssues now!" />
+
+
+		<!-- Load local CSS -->
+		<link rel="stylesheet" href="app/css/main.css">
+		<link rel="icon" type="image/x-icon" href="app/img/favicon.ico">
+		<link rel="stylesheet" href="app/css/spinner.css">
+		<link rel="stylesheet" href="app/css/tooltip.css">
+
+		<!-- Google fonts -->
+		<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css">
+
+		<!-- Load bower CSS -->
+		<link href="../bower_components/octicons/octicons/octicons.css" rel='stylesheet' type='text/css'></link>
+		<link rel="stylesheet" href="../bower_components/angular-loading-bar/build/loading-bar.css">
+
+		<!-- Load bower scripts -->
+		<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="../bower_components/angular/angular.min.js"></script>
+		<script src="../bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
+		<script src="../bower_components/angular-route/angular-route.min.js"></script>
+
+		<!-- Load local scripts -->
+		<script src="app/js/app.js"></script>
+		<script src="app/js/directives.js"></script>
+		<script src="app/js/services.js"></script>
+		<script src="app/js/controllers.js"></script>
+	</head>
+
+<body ng-controller="feedController">
+ 	
+ 	<ng-include src="'app/shared/navbar.html'"></ng-include>
+
+	<div class="container">
+		<div ng-class="{'smallerHeroUrl': arrayOne}" ng-hide="loading" class="hero-url">
+			<p ng-hide="arrayOne">
+				Track your Github Issues
+			</p>
+			<form name="form">
+				<input ng-enter="reset();loadData();"  ng-hide="arrayOne" name="input" type="url" ng-model="gitHubUrl" required placeholder="https://github.com/username/repo">
+				</input>
+				<div style="text-align:left;" ng-show="arrayOne">
+					{{authName}} <p ng-show="repoName" style="display:inline; margin:0px">// {{repoName}}</p> <p ng-click="setLabel('');" data-tooltip="Clear label" ng-show="clickedLabel" style="display:inline; margin:0px"> // {{clickedLabel}} <span class="octicon octicon-x"></span> <p>
+				</div>
+				<input ng-enter="reset();loadData();" ng-show="arrayOne" name="input" type="url" ng-model="gitHubUrl" required placeholder="https://github.com/username/repo">
+				<div ng-click="reset();loadData();" ng-show="arrayOne" class="track-button">
+					TRACK 
+					<span class="octicon octicon-triangle-right"></span>
+				</div>
+				<div ng-hide="arrayOne" ng-click="reset();loadData();" class="button">
+					Track Issues 
+					<span class="octicon octicon-triangle-right"></span>
+				</div>
+				<div ng-show="errorMessage" class="error">
+					There was an error with your URL<br>{{errorMessage}}
+				</div>
+			</form>
+	  	</div>
+	  	<div ng-show="noData" class="no-data-center">
+		No issues here! Probably not a good thing. 
+		</div>
+	</div>
+
+	<loader loading="loading"></loader> 
+
+	
+	<div ng-hide="loading || noData" class="container">
+		<div class="col">
+			<div ng-click="goTo(card)" ng-repeat="card in arrayOne" class="card">
+
+				<div class="card-title">
+					{{card.title}}
+				</div>
+				<div ng-bind="card.body | limitTo: 140" class="card-desc">
+				</div>
+				<div class="card-num">
+					<span ng-show="card.state == 'open'" class="octicon octicon-issue-opened"></span>
+					<span ng-show="card.state == 'closed'" class="octicon octicon-issue-closed"></span>
+					<span ng-show="card.state == 'reopened'" class="octicon octicon-issue-closed"></span>
+					{{card.number}} - {{card.state}}
+				</div>
+				<div class="card-block">
+					<img src="app/img/spinner.gif" class="card-pic" ng-src="{{card.user.avatar_url}}">
+					<div class="card-author">
+						<a data-tooltip="Go to profile" ng-href="{{card.user.html_url}}">
+							<strong>@{{card.user.login}}</strong>
+						</a> 
+						on 
+						<p ng-bind="card.created_at | date:'MMM d'"></p>
+					</div>
+				</div>
+				<div ng-show="card.labels.length > 0" style="height:auto;border:none;padding:0px;max-height:none;"class="card-block">
+					<a class="card-label" ng-click="setLabel(label.name);" data-tooltip="View all issues for {{label.name}}" style="background-color:#{{label.color}};color:#{{darkenColor(label.color)}}" ng-repeat="label in card.labels">
+					{{label.name}}
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="col">
+			<div ng-click="goTo(card)" ng-repeat="card in arrayTwo" class="card">
+				<div class="card-title">
+					{{card.title}}
+				</div>
+				<div ng-bind="card.body | limitTo: 140" class="card-desc">
+				</div>
+				<div class="card-num">
+					<span ng-show="card.state == 'open'" class="octicon octicon-issue-opened"></span>
+					<span ng-show="card.state == 'closed'" class="octicon octicon-issue-closed"></span>
+					<span ng-show="card.state == 'reopened'" class="octicon octicon-issue-closed"></span>
+					{{card.number}} - {{card.state}}
+				</div>
+				<div class="card-block">
+					<img class="card-pic" ng-src="{{card.user.avatar_url}}">
+					<div class="card-author">
+						<a data-tooltip="View {{card.user.login}}'s profile" ng-href="{{card.user.html_url}}">
+							<strong>@{{card.user.login}}</strong>
+						</a> 
+						on 
+						<p ng-bind="card.created_at | date:'MMM d'"></p>
+					</div>
+				</div>
+				<div ng-show="card.labels.length > 0" style="height:auto;border:none;padding:0px;max-height:none;"class="card-block">
+					<a class="card-label" ng-click="setLabel(label.name);" data-tooltip="View all issues for {{label.name}}" style="background-color:#{{label.color}};color:#{{darkenColor(label.color)}}" ng-repeat="label in card.labels">
+					{{label.name}}
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="col">
+			<div ng-click="goTo(card)" ng-repeat="card in arrayThree" class="card">
+				<div class="card-title">
+					{{card.title}}
+				</div>
+				<div ng-bind="card.body | limitTo: 140" class="card-desc">
+				</div>
+				<div class="card-num">
+					<span ng-show="card.state == 'open'" class="octicon octicon-issue-opened"></span>
+					<span ng-show="card.state == 'closed'" class="octicon octicon-issue-closed"></span>
+					<span ng-show="card.state == 'reopened'" class="octicon octicon-issue-closed"></span>
+					{{card.number}} - {{card.state}}
+				</div>
+				<div class="card-block">
+					<img class="card-pic" ng-src="{{card.user.avatar_url}}">
+					<div class="card-author">
+						<a data-tooltip="View {{card.user.login}}'s profile" ng-href="{{card.user.html_url}}">
+							<strong>@{{card.user.login}}</strong>
+						</a> 
+						on 
+						<p ng-bind="card.created_at | date:'MMM d'"></p>
+					</div>
+				</div>
+				<div ng-show="card.labels.length > 0" style="height:auto;border:none;padding:0px;max-height:none;"class="card-block">
+					<a class="card-label" ng-click="setLabel(label.name);" data-tooltip="View all issues for {{label.name}}" style="background-color:#{{label.color}};color:#{{darkenColor(label.color)}}" ng-repeat="label in card.labels">
+					{{label.name}}
+					</a>
+				</div>
+			</div>
+		</div>
+
+		
+	</div>
+
+	<div ng-show="!loading && arrayOne && !onlyOnePage && !errorMessage" class="footer">
+		<div ng-click="updateData(+page - 1)" ng-hide="page == 1" class="page-button">
+			<span class="octicon octicon-arrow-left"></span>
+		</div>
+		<div ng-click="updateData(+page + 1)" ng-hide="noData" class="page-button">
+			<span class="octicon octicon-arrow-right"></span>
+		</div>
+	</div>
+
+	<div ng-view>
+	</div>
+
+</body>

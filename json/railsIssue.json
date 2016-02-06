@@ -1,0 +1,71 @@
+{
+"url": "https://api.github.com/repos/rails/rails/issues/23523",
+"repository_url": "https://api.github.com/repos/rails/rails",
+"labels_url": "https://api.github.com/repos/rails/rails/issues/23523/labels{/name}",
+"comments_url": "https://api.github.com/repos/rails/rails/issues/23523/comments",
+"events_url": "https://api.github.com/repos/rails/rails/issues/23523/events",
+"html_url": "https://github.com/rails/rails/pull/23523",
+"id": 131849158,
+"number": 23523,
+"title": "Avoid a string value truncation in uniqueness validation",
+"user": {
+"login": "kamipo",
+"id": 12642,
+"avatar_url": "https://avatars.githubusercontent.com/u/12642?v=3",
+"gravatar_id": "",
+"url": "https://api.github.com/users/kamipo",
+"html_url": "https://github.com/kamipo",
+"followers_url": "https://api.github.com/users/kamipo/followers",
+"following_url": "https://api.github.com/users/kamipo/following{/other_user}",
+"gists_url": "https://api.github.com/users/kamipo/gists{/gist_id}",
+"starred_url": "https://api.github.com/users/kamipo/starred{/owner}{/repo}",
+"subscriptions_url": "https://api.github.com/users/kamipo/subscriptions",
+"organizations_url": "https://api.github.com/users/kamipo/orgs",
+"repos_url": "https://api.github.com/users/kamipo/repos",
+"events_url": "https://api.github.com/users/kamipo/events{/privacy}",
+"received_events_url": "https://api.github.com/users/kamipo/received_events",
+"type": "User",
+"site_admin": false
+},
+"labels": [
+{
+"url": "https://api.github.com/repos/rails/rails/labels/activerecord",
+"name": "activerecord",
+"color": "0b02e1"
+}
+],
+"state": "open",
+"locked": false,
+"assignee": {
+"login": "senny",
+"id": 5402,
+"avatar_url": "https://avatars.githubusercontent.com/u/5402?v=3",
+"gravatar_id": "",
+"url": "https://api.github.com/users/senny",
+"html_url": "https://github.com/senny",
+"followers_url": "https://api.github.com/users/senny/followers",
+"following_url": "https://api.github.com/users/senny/following{/other_user}",
+"gists_url": "https://api.github.com/users/senny/gists{/gist_id}",
+"starred_url": "https://api.github.com/users/senny/starred{/owner}{/repo}",
+"subscriptions_url": "https://api.github.com/users/senny/subscriptions",
+"organizations_url": "https://api.github.com/users/senny/orgs",
+"repos_url": "https://api.github.com/users/senny/repos",
+"events_url": "https://api.github.com/users/senny/events{/privacy}",
+"received_events_url": "https://api.github.com/users/senny/received_events",
+"type": "User",
+"site_admin": false
+},
+"milestone": null,
+"comments": 1,
+"created_at": "2016-02-06T12:09:49Z",
+"updated_at": "2016-02-06T14:35:03Z",
+"closed_at": null,
+"pull_request": {
+"url": "https://api.github.com/repos/rails/rails/pulls/23523",
+"html_url": "https://github.com/rails/rails/pull/23523",
+"diff_url": "https://github.com/rails/rails/pull/23523.diff",
+"patch_url": "https://github.com/rails/rails/pull/23523.patch"
+},
+"body": "In MySQL and PostgreSQL, a value over the limit cannot be inserted\r\nor updated (See #23522).\r\n\r\nIn SQLite3, a value is inserted or updated regardless of the limit.\r\n\r\nWe should avoid a string value truncation in uniqueness validation.",
+"closed_by": null
+}
