@@ -28,19 +28,31 @@ appServices.factory("githubService", function($http) {
 			
 			return $http({
 				method: "GET",
-				cache: true,
 				url: "/gitData/" + author + "/" + repo + query
 			});
 		},
 
+		/**
+		 * @name getIssue
+		 * @param {String} repo - the name of the github repo
+		 * @param {String} author - the name of the github author
+		 * @param {number} issue - the issue id to get 
+		 * @return {promise} The promise object
+		 */
 		getIssue : function(author, repo, issue) {
 			return $http({
 				method: "GET",
-				cache: true,
 				url: "/issueData/" + author + "/" + repo + "/" + issue
 			});
 		},
 
+		/**
+		 * @name getComments
+		 * @param {String} repo - the name of the github repo
+		 * @param {String} author - the name of the github author
+		 * @param {number} issue - the issue id to get 
+		 * @return {promise} The promise object
+		 */
 		getComments : function(author, repo, issue) {
 			return $http({
 				method: "GET",

@@ -58,7 +58,7 @@
 				</div>
 				<div ng-show="arrayOne" class="card-filter">
 					<span ng-click="openIssues = !openIssues; loadData();" ng-class="{'selected':openIssues}" class="octicon octicon-issue-opened open-filter"></span>
-					<span ng-click="closedIssues = !closedIssues; loadData()" ng-class="{'selected':closedIssues, 'selected': openIssues && closedIssues }" class="octicon octicon-issue-closed close-filter"></span>
+					<span ng-click="closedIssues = !closedIssues; loadData();" ng-class="{'selected':closedIssues}" class="octicon octicon-issue-closed close-filter"></span>
 				</div>
 				<input ng-enter="reset();loadData();" ng-show="arrayOne" name="input" type="url" ng-model="gitHubUrl" required placeholder="https://github.com/username/repo">
 				<div ng-click="reset();loadData();" ng-show="arrayOne" class="track-button">
