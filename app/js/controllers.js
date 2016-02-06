@@ -119,7 +119,7 @@ appControllers.controller("feedController", function($scope, githubService, dark
 
 		query = query + "&state=";
 
-		if($scope.openIssues && $scope.closedIssues) {
+		if(($scope.openIssues && $scope.closedIssues) || (!$scope.openIssues && !$scope.closedIssues)) {
 			query = query + "all";
 			$location.search('state', 'all');
 		}
@@ -153,6 +153,19 @@ appControllers.controller("feedController", function($scope, githubService, dark
 						case 'author':
 							$scope.authName = query[key];
 							break;
+						case 'state':
+							if(query[key] == 'open') {
+								$scope.openIssues = true;
+								$scope.closedIssues = false;
+							}
+							else if(query[key] == 'closed') {
+								$scope.closedIssues = true;
+								$scope.openIssues = false;
+							}
+							else {
+								$scope.closedIssues = true;
+								$scope.openIssues = true;
+							}
 					}
 				}
 			}
