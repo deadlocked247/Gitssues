@@ -1,9 +1,22 @@
 'use strict';
 
+/* Written by BA 2016 for Twitter Intership */
+
 var appControllers = angular.module('appControllers', []);
 
+/**
+ * @ngdoc controller
+ * @name issueController
+ * @description
+ * Controller to modify data from github api and show a specific issues for a given author and repo
+ */
 appControllers.controller('issueController', function($scope, $location, githubService, darken) {
 
+	/** Get the comment and issue data from the API
+	 * @param {String} auth - author of the repo
+	 * @param {String} repo - repo that get the issue of
+	 * @param {number} issueId - id of the issue to get
+	 */
 	$scope.getIssueData = function(auth, repo, issueId) {
 		$scope.loading = true;
 		githubService.getIssue(auth, repo, issueId)
@@ -27,6 +40,9 @@ appControllers.controller('issueController', function($scope, $location, githubS
 		})
 	}
 
+	/**
+	 * Get the queries in the URL and apply to controller variables
+	 */
 	$scope.getIssueUrl = function() {
 		var query = $location.search();
 		if(query) {
@@ -47,7 +63,6 @@ appControllers.controller('issueController', function($scope, $location, githubS
 			}
 			if($scope.authName && $scope.repoName && $scope.issueId) {
 				$scope.errorMessage = undefined;
-				$scope.gitHubUrl = "https://github.com/" + $scope.authName + '/' + $scope.repoName;
 				$scope.getIssueData($scope.authName, $scope.repoName, $scope.issueId);
 			}
 			else {
@@ -56,12 +71,15 @@ appControllers.controller('issueController', function($scope, $location, githubS
 		}
 	}
 
+	/** Call the function to parse url **/
 	$scope.getIssueUrl();
 
+	/** When a user clicks on a label, link back to the main page showing only the labels **/
 	$scope.viewLabel = function(labelName) {
 		window.location.href = "/?repo=" + $scope.repoName + "&author=" + $scope.authName + "&labels=" + labelName; 
 	}
 
+	/** Go back to the main page, browser back button should also work **/
 	$scope.goBack = function() {
 		window.location.href = "/?repo=" + $scope.repoName + "&author=" + $scope.authName;
 	}

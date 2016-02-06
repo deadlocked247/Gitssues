@@ -1,6 +1,7 @@
 'use strict';
 
-/* App Module */
+/* gitssues app module */
+/* Written by BA 2016 for Twitter Intership */
 
 var app = angular.module('gitssues', ['ngRoute', 'appDirectives', 'appServices', 'appControllers', 'angular-loading-bar']);
 

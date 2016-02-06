@@ -1,3 +1,5 @@
+/* Written by BA 2016 for Twitter Intership */
+
 /* Declare our modules */
 var express 		= require('express'),
     app     		= express(),
@@ -5,8 +7,6 @@ var express 		= require('express'),
 	port    = 8000,
 	request = require('request'),
 	fs = require('fs');
-
-
 
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 
@@ -26,7 +26,7 @@ app.get('/issue', function (req, res) {
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 app.use('/', express.static(__dirname + '/'));
 
-
+/* Access comments for an issue */
 app.get('/issueComments/:author/:repo/:issue', function(req, res) {
 	request({
 		url: 'https://api.github.com/repos/' + req.params.author + '/' + req.params.repo + '/issues/' + req.params.issue +'/comments',
@@ -43,12 +43,11 @@ app.get('/issueComments/:author/:repo/:issue', function(req, res) {
 	    	} else {
 	        	res.send(body);
 	    	}
-	    });
-		
-	});
+	    });		
+});
 
+/* Get issue data */
 app.get('/issueData/:author/:repo/:issue', function(req, res) {
-
 	request({
 		url: 'https://api.github.com/repos/' + req.params.author + '/' + req.params.repo + '/issues/' + req.params.issue,
 		method: 'GET',
@@ -65,7 +64,6 @@ app.get('/issueData/:author/:repo/:issue', function(req, res) {
 	        	res.send(body);
 	    	}
 	    });
-	
 });
 
 /* GETs the data for the given repo and author and additional queries */
@@ -98,7 +96,6 @@ app.get('/gitData/:author/:repo', function(req, res) {
 	        	res.send(body);
 	    	}
 		});
-	
 });
 
 /* Listen on port 8000 */

@@ -1,5 +1,7 @@
 'use strict';
 
+/* Written by BA 2016 for Twitter Intership */
+
 var appControllers = angular.module('appControllers', []);
 
 /**
@@ -31,20 +33,20 @@ appControllers.controller("feedController", function($scope, githubService, dark
 		$scope.errorMessage = undefined;
 	}
 
+	/** Gets the string that we can use for the UI with the given 140 character limit
+	 * @param {String} string - string to limit to 140 characters
+	 * @return {String} The limited string with no words cut
+	 */
 	$scope.getCharacterLimit = function(string) {
 		var ending = "";
-		console.log(string);
-
 		if(string && string.length >= 140) {
-			//trim the string to the maximum length
-			var trimmedString = string.substr(0, 140);
 			//re-trim if we are in the middle of a word
-			trimmedString = trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" ")));
-			if(trimmedString.length == 0) {
+			var trim = string.substr(0, 140).substr(0, Math.min(string.substr(0, 140).length, string.substr(0, 140).lastIndexOf(" ")));
+			if(trim.length == 0) {
 				return string;
 			}
 			else {
-				return trimmedString + "...";
+				return trim + "...";
 			}
 		}
 		else {
@@ -52,6 +54,11 @@ appControllers.controller("feedController", function($scope, githubService, dark
 		}
 	}
 
+	/* Get the repo auth data 
+	 * @param {String} auth - author/owner of the repo
+	 * @param {String} repo - repo name
+	 * @param {String} query - additional query in the correct URI format
+	 */
 	$scope.getRepoAuthData = function(auth, repo, query) {
 		$scope.noData = false;
 		$scope.onlyOnePage = false;
@@ -106,9 +113,9 @@ appControllers.controller("feedController", function($scope, githubService, dark
 		});
 	}
 
-
-
-
+	/**
+	 * Construct the URL query from the scopes on the DOM
+	 */
 	$scope.constructQuery = function() {
 		var query = "?page=" + $scope.page;
 		$location.search('page', $scope.page);
@@ -135,6 +142,7 @@ appControllers.controller("feedController", function($scope, githubService, dark
 		return query;
 	}
 
+	/* Load query elements from URL to scope elements */
 	$scope.checkQuery = function() {
 		var query = $location.search();
 		if(query) {
@@ -169,9 +177,9 @@ appControllers.controller("feedController", function($scope, githubService, dark
 					}
 				}
 			}
+			/* if we have something to make a call with, make the service call */
 			if($scope.authName && $scope.repoName) {
 				$scope.gitHubUrl = "https://github.com/" + $scope.authName + '/' + $scope.repoName;
-
 				$scope.getRepoAuthData($scope.authName, $scope.repoName, $scope.constructQuery());
 			}
 		}
@@ -218,7 +226,6 @@ appControllers.controller("feedController", function($scope, githubService, dark
 	 */
 	$scope.updateData = function(page) {
 		$scope.page = page;
-		console.log($scope.page);
 		$scope.loadData();
 	}
 
@@ -247,13 +254,12 @@ appControllers.controller("feedController", function($scope, githubService, dark
 		}
 	}
 
+	/* Set the open/close label and match with the query */
 	$scope.setLabel = function(label) {
 		$scope.clickedLabel = label;
 		$location.search('labels', label);
 		$scope.loadData();
 	}
-
-	
 
 	/**
 	 * Loads the data from the promise provided by service
@@ -275,6 +281,7 @@ appControllers.controller("feedController", function($scope, githubService, dark
 		}	
 	}
 
+	/* Go to the card for next view, using standard javascript window because Angular is annoying */
 	$scope.goTo = function(card) {
 		window.location.href= ('/issue/?repo=' + $scope.repoName + '&author=' + $scope.authName + '&id=' + card.number);
 	}

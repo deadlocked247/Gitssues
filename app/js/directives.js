@@ -1,5 +1,7 @@
 'use strict';
 
+/* Written by BA 2016 for Twitter Intership */
+
 var appDirectives = angular.module('appDirectives', []);
 
 /**
