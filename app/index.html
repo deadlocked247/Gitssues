@@ -40,6 +40,8 @@
 		<script src="app/js/directives.js"></script>
 		<script src="app/js/services.js"></script>
 		<script src="app/js/controllers.js"></script>
+		<script src="app/js/filters.js"></script>
+
 	</head>
 
 <body ng-controller="feedController">
@@ -90,7 +92,7 @@
 				<div class="card-title">
 					{{card.title}}
 				</div>
-				<div ng-bind="card.body" class="card-desc">
+				<div ng-bind-html="card.body | filterProfiles" class="card-desc">
 				</div>
 				<div class="card-num">
 					<span ng-show="card.state == 'open'" class="octicon octicon-issue-opened"></span>

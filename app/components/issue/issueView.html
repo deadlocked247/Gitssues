@@ -39,6 +39,7 @@
 		<script src="app/js/directives.js"></script>
 		<script src="app/js/services.js"></script>
 		<script src="app/js/controllers.js"></script>
+		<script src="app/js/filters.js"></script>
 
 		<!-- Load issue component scripts -->
 		<script src="app/components/issue/issueController.js"></script>
@@ -78,7 +79,7 @@
 
 				{{issueData.title}}</div>
 		</div>
-		<div ng-bind="issueData.body" class="issue-body">
+		<div ng-bind-html="issueData.body | filterProfiles" class="issue-body">
 		</div>
 		<div class="issue-labels">
 			<a data-tooltip="View all issues for {{label.name}}" ng-click="viewLabel(label.name)" class="card-label" style="background-color:#{{label.color}};color:#{{darkenColor(label.color)}}" ng-repeat="label in issueData.labels">
@@ -102,7 +103,7 @@
 						</div>
 					</a>
 				</div>
-				<div ng-bind="comment.body" class="body-block">
+				<div ng-bind-html="comment.body | filterProfiles" class="body-block">
 				</div>
 			</div>
 		</div>

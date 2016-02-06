@@ -3,7 +3,7 @@
 /* gitssues app module */
 /* Written by BA 2016 for Twitter Intership */
 
-var app = angular.module('gitssues', ['ngRoute', 'appDirectives', 'appServices', 'appControllers', 'angular-loading-bar']);
+var app = angular.module('gitssues', ['ngRoute', 'appDirectives', 'appServices', 'appControllers', 'appFilters', 'angular-loading-bar']);
 
 /**
  * @ngdoc configuration

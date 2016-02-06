@@ -21,7 +21,6 @@ appControllers.controller("feedController", function($scope, githubService, dark
 
 	/* Starting page */
 	$scope.page = 1;
-
 	/** 
 	 * Reset scope values for API calls
 	 */
