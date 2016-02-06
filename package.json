@@ -1,6 +1,7 @@
 {
   "name": "twitter-project-spring-2016",
   "version": "0.0.1",
+  "author": "BA",
   "description": "Twitter Project for interview",
   "main": "server.js",
   "directories": {

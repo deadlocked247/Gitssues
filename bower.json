@@ -2,6 +2,7 @@
   "name": "Twitter Project Spring 2016",
   "description": "Interview project for Twitter",
   "license": "MIT",
+  "author": "BA",
   "version": "0.0.1",
   "dependencies": {
     "angular": "",

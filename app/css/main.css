@@ -471,34 +471,29 @@ a, a:hover, a:visited, a:focus, a:active {
 	font-size:24px;
 }
 
-.card-filter>.octicon.octicon-issue-opened {
+.open-filter {
 	padding: 5px 10px;
     border-right: 1px solid #ECECEC;
     margin-right: -6px;
     color: grey;
 }
 
-.card-filter>span.selected:hover {
-	opacity:1;
-	cursor: pointer;
-}
-
-.card-filter>.octicon.octigon-issue-closed {
+.close-filter {
     padding: 5px 10px;
     border-left: 1px solid #ECECEC;
     color: grey;
 }
 
-.card-filter>span:hover {
+.open-filter:hover, .close-filter:hover {
 	opacity: 0.5;
 	cursor: pointer;
 }
 
-.card-filter>.octicon.octicon-issue-opened.selected {
+.open-filter.selected {
 	color:#23D655 !important;
 }
 
-.card-filter>.octicon.octigon-issue-closed.selected {
+.close-filter.selected {
 	color:#FF4D66 !important;
 }
 

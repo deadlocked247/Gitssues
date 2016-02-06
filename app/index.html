@@ -57,8 +57,8 @@
 					{{authName}} <p ng-show="repoName" style="display:inline; margin:0px">// {{repoName}}</p> <p ng-click="setLabel('');" data-tooltip="Clear label" ng-show="clickedLabel" style="display:inline; margin:0px"> // {{clickedLabel}} <span class="octicon octicon-x"></span> <p>
 				</div>
 				<div ng-show="arrayOne" class="card-filter">
-					<span ng-click="openIssues = !openIssues" ng-class="{'selected':openIssues}" class="octicon octicon-issue-opened"></span>
-					<span ng-click="closedIssues = !closedIssues" ng-class="{'selected':closedIssues, 'selected': openIssues && closedIssues }" class="octicon octicon-issue-closed"></span>
+					<span ng-click="openIssues = !openIssues" ng-class="{'selected':openIssues}" class="octicon octicon-issue-opened open-filter"></span>
+					<span ng-click="closedIssues = !closedIssues" ng-class="{'selected':closedIssues, 'selected': openIssues && closedIssues }" class="octicon octicon-issue-closed close-filter"></span>
 				</div>
 				<input ng-enter="reset();loadData();" ng-show="arrayOne" name="input" type="url" ng-model="gitHubUrl" required placeholder="https://github.com/username/repo">
 				<div ng-click="reset();loadData();" ng-show="arrayOne" class="track-button">
