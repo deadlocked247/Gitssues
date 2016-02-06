@@ -1,5 +1,6 @@
 ## Gitssues 
-The exclusive Github Issues tracking web app
+The exclusive Github Issues tracking web app <br>
+You can view it here [https://twittergitssues.herokuapp.com/](https://twittergitssues.herokuapp.com/)
 
 ### Getting started
 It's really easy to start using this app, just do the following
@@ -35,3 +36,11 @@ Testing frameworks used
 * Angular Mocks
 * PhantomJS
 
+### How to use
+Simply type in the GitHub Url and hit track issues 
+<br>
+Browse through issues, filter by label by clicking on them or filter by open/ closed/ or all issues by clicking the top-right icons
+<br>
+Click on an issue to see a more detailed view and the comments on the issue as well
+
+BA 2016 Twitter Intership Project

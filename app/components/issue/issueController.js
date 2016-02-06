@@ -10,7 +10,7 @@ var appControllers = angular.module('appControllers', []);
  * @description
  * Controller to modify data from github api and show a specific issues for a given author and repo
  */
-appControllers.controller('issueController', function($scope, $location, githubService, darken) {
+appControllers.controller('issueController', function($scope, $location, githubService, darken, $q) {
 
 	/** Get the comment and issue data from the API
 	 * @param {String} auth - author of the repo
@@ -24,6 +24,7 @@ appControllers.controller('issueController', function($scope, $location, githubS
 			if(payload.data && payload.data.message) {
 				$scope.errorMessage = payload.data.message;
 				$scope.loading = false;
+				return $q.defer();
 			}
 			else {
 				$scope.issueData = payload.data;

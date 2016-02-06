@@ -14,7 +14,7 @@
 	-moz-user-select: none;   
 	-ms-user-select: none;     
 	user-select: none;  
-
+	box-sizing: initial !important;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -27,7 +27,7 @@ a, a:hover, a:visited, a:focus, a:active {
 	color:inherit;
 }
 .navbar {
-	width: calc(100% - 40);
+	width: calc(100% - 40px);
 	height:35px;
 	padding:20px;
 	border-bottom: 1px #ECECEC solid;
@@ -439,7 +439,7 @@ a, a:hover, a:visited, a:focus, a:active {
 	padding:30px 0px;
 }
 
-.comment-author>.name-block>img {
+.comment-author>.name-block>a>img {
     height: 60px;
     display: block;
     width: 60px;
@@ -448,15 +448,20 @@ a, a:hover, a:visited, a:focus, a:active {
     border-radius: 10px;
 }
 
-.comment-author>.name-block>div {
+.comment-author>.name-block>a {
 	height:60px;
 }
-.comment-author>.name-block>div>.name {
+.comment-author>.name-block>a>.name {
 	padding:2.5px;
 }	
-.comment-author>.name-block>div>.date {
+.comment-author>.name-block>a>.date {
 	padding:2.5px;
 }	
+
+.comment-author>.name-block:hover {
+	opacity: .75;
+	cursor: pointer;
+}
 
 .comment-author>.body-block {
 	text-align: left;

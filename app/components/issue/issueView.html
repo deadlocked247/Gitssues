@@ -92,14 +92,15 @@
 			</div>
 			<div ng-repeat="comment in commentData" class="comment-author">
 				<div class="name-block">
+					<a ng-href="{{comment.user.html_url}}">
 					<img ng-src="{{comment.user.avatar_url}}">
-					<div>
+					
 						<div class="name">
 							@{{comment.user.login}}
 						</div>
 						<div ng-bind="comment.created_at | date: 'mediumDate'" class="date">
 						</div>
-					</div>
+					</a>
 				</div>
 				<div ng-bind="comment.body" class="body-block">
 				</div>

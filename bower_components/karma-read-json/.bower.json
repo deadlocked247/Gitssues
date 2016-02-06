@@ -27,6 +27,5 @@
   },
   "_source": "git://github.com/pizzapanther/Karma-Read-JSON.git",
   "_target": "^1.1.0",
-  "_originalSource": "karma-read-json",
-  "_direct": true
+  "_originalSource": "karma-read-json"
 }
