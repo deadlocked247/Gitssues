@@ -254,7 +254,7 @@ a, a:hover, a:visited, a:focus, a:active {
 }
 
 .hero-url.smallerHeroUrl {
-    margin: 20px auto;
+    margin: 30px auto;
     width: calc(100% - 25px);
     padding: 0px;
 }
@@ -432,12 +432,12 @@ a, a:hover, a:visited, a:focus, a:active {
 }
 
 .comment-author>.name-block>img {
-	height:60px;
-	display: block;
-	width:60px;
-	padding-right:20px;
-	float: left;
-	border-radius: 50%;
+    height: 60px;
+    display: block;
+    width: 60px;
+    margin-right: 20px;
+    float: left;
+    border-radius: 10px;
 }
 
 .comment-author>.name-block>div {
@@ -457,6 +457,49 @@ a, a:hover, a:visited, a:focus, a:active {
     line-height: 30px;
     letter-spacing: .25px;
     font-weight: 300;
+}
+
+.card-filter {
+	float: right;
+    margin-top: -52px;
+    border: 1px solid #ECECEC;
+    border-radius: 5px;
+    margin-right: -8px;
+}
+
+.card-filter>span {
+	font-size:24px;
+}
+
+.card-filter>.octicon.octicon-issue-opened {
+	padding: 5px 10px;
+    border-right: 1px solid #ECECEC;
+    margin-right: -6px;
+    color: grey;
+}
+
+.card-filter>span.selected:hover {
+	opacity:1;
+	cursor: pointer;
+}
+
+.card-filter>.octicon.octigon-issue-closed {
+    padding: 5px 10px;
+    border-left: 1px solid #ECECEC;
+    color: grey;
+}
+
+.card-filter>span:hover {
+	opacity: 0.5;
+	cursor: pointer;
+}
+
+.card-filter>.octicon.octicon-issue-opened.selected {
+	color:#23D655 !important;
+}
+
+.card-filter>.octicon.octigon-issue-closed.selected {
+	color:#FF4D66 !important;
 }
 
 @media(max-width: 960px) {
@@ -484,9 +527,19 @@ a, a:hover, a:visited, a:focus, a:active {
 		margin-right: 0px;
 	}
 	.hero-url.smallerHeroUrl>form>input {
-		width: calc(100% - 40px);
+	    width: calc(100% - 40px);
+	    margin-bottom: 10px;
+	    margin-top: 0px;
 	}
 	.hero-url.smallerHeroUrl {
-		padding: 0px 10px;
+		padding:0px;
+	}
+	.repo-title {
+		padding:0px 10px;
+	}
+	.card {
+		border-radius: 0px;
+		margin-left:0px;
+		margin-right:0px;
 	}
 }

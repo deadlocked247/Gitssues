@@ -53,8 +53,12 @@
 			<form name="form">
 				<input ng-enter="reset();loadData();"  ng-hide="arrayOne" name="input" type="url" ng-model="gitHubUrl" required placeholder="https://github.com/username/repo">
 				</input>
-				<div style="text-align:left;" ng-show="arrayOne">
+				<div class="repo-title" style="text-align:left;" ng-show="arrayOne">
 					{{authName}} <p ng-show="repoName" style="display:inline; margin:0px">// {{repoName}}</p> <p ng-click="setLabel('');" data-tooltip="Clear label" ng-show="clickedLabel" style="display:inline; margin:0px"> // {{clickedLabel}} <span class="octicon octicon-x"></span> <p>
+				</div>
+				<div ng-show="arrayOne" class="card-filter">
+					<span ng-click="openIssues = !openIssues" ng-class="{'selected':openIssues}" class="octicon octicon-issue-opened"></span>
+					<span ng-click="closedIssues = !closedIssues" ng-class="{'selected':closedIssues, 'selected': openIssues && closedIssues }" class="octicon octicon-issue-closed"></span>
 				</div>
 				<input ng-enter="reset();loadData();" ng-show="arrayOne" name="input" type="url" ng-model="gitHubUrl" required placeholder="https://github.com/username/repo">
 				<div ng-click="reset();loadData();" ng-show="arrayOne" class="track-button">
@@ -85,7 +89,7 @@
 				<div class="card-title">
 					{{card.title}}
 				</div>
-				<div ng-bind="card.body | limitTo: 140" class="card-desc">
+				<div ng-bind="card.body" class="card-desc">
 				</div>
 				<div class="card-num">
 					<span ng-show="card.state == 'open'" class="octicon octicon-issue-opened"></span>
@@ -104,7 +108,7 @@
 					</div>
 				</div>
 				<div ng-show="card.labels.length > 0" style="height:auto;border:none;padding:0px;max-height:none;"class="card-block">
-					<a class="card-label" ng-click="setLabel(label.name);" data-tooltip="View all issues for {{label.name}}" style="background-color:#{{label.color}};color:#{{darkenColor(label.color)}}" ng-repeat="label in card.labels">
+					<a class="card-label" ng-click="setLabel(label.name);$event.stopPropagation();" data-tooltip="View all issues for {{label.name}}" style="background-color:#{{label.color}};color:#{{darkenColor(label.color)}}" ng-repeat="label in card.labels">
 					{{label.name}}
 					</a>
 				</div>
@@ -115,7 +119,7 @@
 				<div class="card-title">
 					{{card.title}}
 				</div>
-				<div ng-bind="card.body | limitTo: 140" class="card-desc">
+				<div ng-bind="card.body" class="card-desc">
 				</div>
 				<div class="card-num">
 					<span ng-show="card.state == 'open'" class="octicon octicon-issue-opened"></span>
@@ -134,7 +138,7 @@
 					</div>
 				</div>
 				<div ng-show="card.labels.length > 0" style="height:auto;border:none;padding:0px;max-height:none;"class="card-block">
-					<a class="card-label" ng-click="setLabel(label.name);" data-tooltip="View all issues for {{label.name}}" style="background-color:#{{label.color}};color:#{{darkenColor(label.color)}}" ng-repeat="label in card.labels">
+					<a class="card-label" ng-click="setLabel(label.name);$event.stopPropagation();" data-tooltip="View all issues for {{label.name}}" style="background-color:#{{label.color}};color:#{{darkenColor(label.color)}}" ng-repeat="label in card.labels">
 					{{label.name}}
 					</a>
 				</div>
@@ -145,7 +149,7 @@
 				<div class="card-title">
 					{{card.title}}
 				</div>
-				<div ng-bind="card.body | limitTo: 140" class="card-desc">
+				<div ng-bind="card.body" class="card-desc">
 				</div>
 				<div class="card-num">
 					<span ng-show="card.state == 'open'" class="octicon octicon-issue-opened"></span>
@@ -164,7 +168,7 @@
 					</div>
 				</div>
 				<div ng-show="card.labels.length > 0" style="height:auto;border:none;padding:0px;max-height:none;"class="card-block">
-					<a class="card-label" ng-click="setLabel(label.name);" data-tooltip="View all issues for {{label.name}}" style="background-color:#{{label.color}};color:#{{darkenColor(label.color)}}" ng-repeat="label in card.labels">
+					<a class="card-label" ng-click="setLabel(label.name);$event.stopPropagation();" data-tooltip="View all issues for {{label.name}}" style="background-color:#{{label.color}};color:#{{darkenColor(label.color)}}" ng-repeat="label in card.labels">
 					{{label.name}}
 					</a>
 				</div>

@@ -44,10 +44,12 @@
 	</head>
 <body ng-controller="issueController">
 	<ng-include src="'app/shared/navbar.html'"></ng-include>
-	<a target="_self" href="/">
-		<div ng-bind="errorMessage" class="no-data-center">
-		</div>
-	<loader loading="loading"></loader> 
+	<div class="container">
+		<a target="_self" href="/">
+			<div style="margin: 60px;" ng-bind="errorMessage" class="no-data-center">
+			</div>
+		<loader loading="loading"></loader> 
+	</div>
 	
 	<div ng-hide="loading || errorMessage" class="container" style="padding-bottom:40px">
 

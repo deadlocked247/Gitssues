@@ -14,6 +14,9 @@ appControllers.controller("feedController", function($scope, githubService, dark
 	/* Default Github repo as given by prompt */
 	$scope.gitHubUrl = "https://github.com/rails/rails";
 
+	$scope.closedIssues = true;
+	$scope.openIssues = true;
+
 	/* Starting page */
 	$scope.page = 1;
 
@@ -26,6 +29,27 @@ appControllers.controller("feedController", function($scope, githubService, dark
 		$scope.noData = false;
 		$scope.onlyOnePage = false;
 		$scope.errorMessage = undefined;
+	}
+
+	$scope.getCharacterLimit = function(string) {
+		var ending = "";
+		console.log(string);
+
+		if(string && string.length >= 140) {
+			//trim the string to the maximum length
+			var trimmedString = string.substr(0, 140);
+			//re-trim if we are in the middle of a word
+			trimmedString = trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" ")));
+			if(trimmedString.length == 0) {
+				return string;
+			}
+			else {
+				return trimmedString + "...";
+			}
+		}
+		else {
+			return string;
+		}
 	}
 
 	$scope.getRepoAuthData = function(auth, repo, query) {
@@ -58,6 +82,10 @@ appControllers.controller("feedController", function($scope, githubService, dark
 					$scope.noData = true;
 				}
 				else {
+					console.log(payload.data);
+					for(var i = 0; i < length; i++) {
+						payload.data[i].body = $scope.getCharacterLimit(payload.data[i].body);
+					};
 					/* Divide data up into three arrays for columns in view */
 					$scope.arrayOne = payload.data.slice(0,Math.floor(length/3));
 					$scope.arrayTwo = payload.data.slice(Math.floor(length/3),Math.floor(length*2/3));;
@@ -65,7 +93,8 @@ appControllers.controller("feedController", function($scope, githubService, dark
 
 					if(length < 25 ) {
 						$scope.onlyOnePage = true;
-					}
+					};
+
 				}
 			}
 			$scope.loading = false;
@@ -218,6 +247,5 @@ appControllers.controller("feedController", function($scope, githubService, dark
 		window.location.href= ('/issue/?repo=' + $scope.repoName + '&author=' + $scope.authName + '&id=' + card.number);
 	}
 
-	
 
 });
