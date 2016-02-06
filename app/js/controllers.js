@@ -260,6 +260,11 @@ appControllers.controller("feedController", function($scope, githubService, dark
 	 */
 	$scope.loadData = function() {
 
+		if(!$scope.openIssues && !$scope.closedIssues) {
+			$scope.openIssues = true;
+			$scope.closedIssues = true;
+		}
+
 		/* Make sure we have valid data */
 		var parsedData = $scope.checkFields();
 		if(parsedData) {

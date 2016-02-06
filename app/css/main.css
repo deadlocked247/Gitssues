@@ -339,7 +339,7 @@ a, a:hover, a:visited, a:focus, a:active {
 
 .issue-author {
     width: calc(100% - 60px);
-    margin: 60px auto;
+    margin: 30px auto;
     display: block;
     margin-bottom:30px;
     text-align: center;
@@ -407,6 +407,7 @@ a, a:hover, a:visited, a:focus, a:active {
     line-height: 40px;
     letter-spacing: .25px;
     font-weight: 300;
+    word-wrap: break-word;
 }
 
 .issue-labels {
@@ -456,6 +457,7 @@ a, a:hover, a:visited, a:focus, a:active {
     font-size: 16px;
     line-height: 30px;
     letter-spacing: .25px;
+    word-wrap: break-word;
     font-weight: 300;
 }
 
@@ -502,6 +504,7 @@ a, a:hover, a:visited, a:focus, a:active {
 		display: inline;
 		width:100%;
 	}
+
 }
 
 @media(max-width: 700px) {
@@ -511,6 +514,35 @@ a, a:hover, a:visited, a:focus, a:active {
 	.issue-comments {
 		margin-left:30px !important;
 		margin-right:30px !important;
+	}
+	.hero-url {
+		padding: 0px;
+	}
+	.track-button {
+		margin-right: 0px;
+	}
+	.hero-url.smallerHeroUrl>form>input {
+	    width: calc(100% - 40px);
+	    margin-bottom: 10px;
+	    margin-top: 0px;
+	}
+	.hero-url.smallerHeroUrl {
+		padding:0px;
+	}
+	.repo-title {
+		padding:0px 10px;
+	}
+	.card {
+		border-radius: 0px;
+		margin-left:0px;
+		margin-right:0px;
+	}
+	.issue-body {
+		padding:0px 20px;
+	}
+	.card-filter {
+		margin-top: -57px;
+		margin-right:0px;
 	}
 }
 
@@ -535,6 +567,13 @@ a, a:hover, a:visited, a:focus, a:active {
 	.card {
 		border-radius: 0px;
 		margin-left:0px;
+		margin-right:0px;
+	}
+	.issue-body {
+		padding:0px 20px;
+	}
+	.card-filter {
+		margin-top: -57px;
 		margin-right:0px;
 	}
 }

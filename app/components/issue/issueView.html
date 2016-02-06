@@ -45,13 +45,21 @@
 <body ng-controller="issueController">
 	<ng-include src="'app/shared/navbar.html'"></ng-include>
 	<div class="container">
-		<a target="_self" href="/">
-			<div style="margin: 60px;" ng-bind="errorMessage" class="no-data-center">
-			</div>
+		<div ng-click="goBack()" style="margin: 30px;" ng-bind="errorMessage" class="no-data-center">
+		</div>
+
 		<loader loading="loading"></loader> 
 	</div>
 	
 	<div ng-hide="loading || errorMessage" class="container" style="padding-bottom:40px">
+		<div class="repo-title" style="text-align:center;margin-top: 40px;">
+			<div>
+				{{authName}} <p ng-show="repoName" style="display:inline; margin:0px">// {{repoName}}</p>
+			</div>
+			<div ng-click="goBack()" class="button">
+				Go Back
+			</div>
+		</div>
 
 		<div class="issue-author">
 			<a ng-href="{{issueData.user.html_url}}">
