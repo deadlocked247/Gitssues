@@ -14,7 +14,9 @@ It's really easy to start using this app, just do the following
 
 To run all tests just type <br>
 <code>$npm test</code>
-
+<br>
+The specs are located in the test folder and the mock data under the json folder
+<br>
 Front-end Dependencies used
 
 * AngularJS
@@ -35,6 +37,9 @@ Testing frameworks used
 * Jasmine
 * Angular Mocks
 * PhantomJS
+* Karma read json
+* Karma phantomJS launcher
+* Karma-Jasmine
 
 ### How to use
 Simply type in the GitHub Url and hit track issues 

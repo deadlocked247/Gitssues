@@ -44,7 +44,7 @@
 		<!-- Load issue component scripts -->
 		<script src="app/components/issue/issueController.js"></script>
 	</head>
-<body ng-controller="issueController">
+<body ng-cloak ng-controller="issueController">
 	<ng-include src="'app/shared/navbar.html'"></ng-include>
 	<div class="container">
 		<div ng-click="goBack()" style="margin: 30px;" ng-bind="errorMessage" class="no-data-center">
