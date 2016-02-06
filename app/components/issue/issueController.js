@@ -84,6 +84,11 @@ appControllers.controller('issueController', function($scope, $location, githubS
 		window.location.href = "/?repo=" + $scope.repoName + "&author=" + $scope.authName;
 	}
 
+	/* Go back to view all from this state */
+	$scope.viewAll = function(state) {
+		window.location.href = "/?repo=" + $scope.repoName + "&author=" + $scope.authName + "&state=" + state;
+	}
+
 	/**
 	 * Gives a contrasting color for a given HEX to create the HEX 
 	 * of the text color (for legibility)

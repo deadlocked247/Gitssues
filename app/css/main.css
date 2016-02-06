@@ -196,6 +196,9 @@ a, a:hover, a:visited, a:focus, a:active {
 	cursor: pointer;
 }
 
+.label:before, .label:after {
+	text-transform: none;
+}
 
 .card-label {
 	font-size: 12px;

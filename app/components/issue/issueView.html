@@ -69,7 +69,7 @@
 			</a>
 			<div class="date" ng-bind="issueData.created_at | date:'mediumDate'"></div>
 			<div class="title">
-				<div class="label {{issueData.state}}">
+				<div ng-click="viewAll(issueData.state)" data-tooltip="View all {{issueData.state}} issues" class="label {{issueData.state}}">
 					<span ng-show="issueData.state == 'open'" class="octicon octicon-issue-opened"></span>
 					<span ng-show="issueData.state == 'closed'" class="octicon octicon-issue-closed"></span>
 					<span ng-show="issueData.state == 'reopened'" class="octicon octicon-issue-reopened"></span>
