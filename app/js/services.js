@@ -28,6 +28,7 @@ appServices.factory("githubService", function($http) {
 			
 			return $http({
 				method: "GET",
+				cache: true,
 				url: "/gitData/" + author + "/" + repo + query
 			});
 		},
@@ -35,6 +36,7 @@ appServices.factory("githubService", function($http) {
 		getIssue : function(author, repo, issue) {
 			return $http({
 				method: "GET",
+				cache: true,
 				url: "/issueData/" + author + "/" + repo + "/" + issue
 			});
 		},

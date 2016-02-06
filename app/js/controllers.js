@@ -117,7 +117,21 @@ appControllers.controller("feedController", function($scope, githubService, dark
 			$location.search('labels', $scope.clickedLabel);
 		}
 
-		query = query + "&state=all";
+		query = query + "&state=";
+
+		if($scope.openIssues && $scope.closedIssues) {
+			query = query + "all";
+			$location.search('state', 'all');
+		}
+		else if($scope.closedIssues) {
+			query = query + "closed";
+			$location.search('state', 'closed');
+		}
+		else {
+			query = query + "open";
+			$location.search('state', 'open');
+		}
+
 		return query;
 	}
 
